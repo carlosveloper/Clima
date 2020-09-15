@@ -1,0 +1,102 @@
+[
+    {
+        "id": 3657509,
+        "name": "Guayaquil",
+        "state": "",
+        "country": "EC",
+        "coord": {
+            "lon": -79.900002,
+            "lat": -2.16667
+        }
+    },
+    {
+        "id": 3660689,
+        "name": "Ambato",
+        "state": "",
+        "country": "EC",
+        "coord": {
+            "lon": -78.616753,
+            "lat": -1.24908
+        }
+    },
+     {
+        "id": 3658666,
+        "name": "Cuenca",
+        "state": "",
+        "country": "EC",
+        "coord": {
+            "lon": -78.98333,
+            "lat": -2.88333
+        }
+    },
+    {
+        "id": 3654410,
+        "name": "Manta",
+        "state": "",
+        "country": "EC",
+        "coord": {
+            "lon": -80.73333,
+            "lat": -0.95
+        }
+    },
+      {
+        "id": 3652462,
+        "name": "Quito",
+        "state": "",
+        "country": "EC",
+        "coord": {
+            "lon": -78.524948,
+            "lat": -0.22985
+        }
+    },
+    {
+        "id": 1711393,
+        "name": "Ibarra",
+        "state": "",
+        "country": "PH",
+        "coord": {
+            "lon": 124.884171,
+            "lat": 10.12472
+        }
+    },
+    {
+        "id": 3654533,
+        "name": "Machala",
+        "state": "",
+        "country": "EC",
+        "coord": {
+            "lon": -79.966667,
+            "lat": -3.26667
+        }
+    },
+     {
+        "id": 3658192,
+        "name": "Eloy Alfaro",
+        "state": "",
+        "country": "EC",
+        "coord": {
+            "lon": -79.833328,
+            "lat": -2.2
+        }
+    },
+    {
+        "id": 3653693,
+        "name": "Otavalo",
+        "state": "",
+        "country": "EC",
+        "coord": {
+            "lon": -78.26667,
+            "lat": 0.23333
+        }
+    },
+    {
+        "id": 3658053,
+        "name": "El Triunfo",
+        "state": "",
+        "country": "EC",
+        "coord": {
+            "lon": -79.966667,
+            "lat": -1.93333
+        }
+    }
+]
