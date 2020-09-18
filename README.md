@@ -44,7 +44,7 @@ Api Key :  https://openweathermap.org/
 
 -Pantalla loading clima 
 
--Pantalla clina(Se visualiza el clima de 5 dias anteriores y 7 dias Posteriores)
+-Pantalla clima(Se visualiza el clima de 5 dias anteriores y 7 dias Posteriores)
 
 -Pruebas unitarias a la Api https://openweathermap.org/
 
