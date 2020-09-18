@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import com.carlosveloper.weatherm.Common.Global;
 import com.carlosveloper.weatherm.Model.CityJson;
 import com.carlosveloper.weatherm.View.Fragments.Ciudades;
+import com.carlosveloper.weatherm.View.Fragments.Clima;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -24,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Gson gson = new Gson();
         List<CityJson> listCiudades = gson.fromJson(loadJSONFromAsset(this), new TypeToken<List<CityJson>>(){}.getType());
         Global.misCiudades=listCiudades;
+        Global.llenarImagenesCLima();
         Log.e("nombre",listCiudades.get(0).getName());
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.Contenedor_Fragments, new Ciudades()).commit();

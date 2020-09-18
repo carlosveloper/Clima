@@ -25,9 +25,10 @@ public class Ciudades extends Fragment {
 
 
     RecyclerView recyclerView;
+    VistaCiudades adapter;
+
     View vista;
     EditText buscar;
-    VistaCiudades adapter;
     public Ciudades() {
         // Required empty public constructor
     }

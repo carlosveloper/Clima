@@ -1,9 +1,11 @@
-package com.carlosveloper.weatherm.Model;
+
+package com.carlosveloper.weatherm.Model.Response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Coord {
+
     @SerializedName("lon")
     @Expose
     private Double lon;
@@ -26,4 +28,5 @@ public class Coord {
     public void setLat(Double lat) {
         this.lat = lat;
     }
+
 }

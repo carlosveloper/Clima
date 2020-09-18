@@ -1,6 +1,9 @@
 package com.carlosveloper.weatherm.Repository;
 
 
+import com.carlosveloper.weatherm.Model.Response.ResponseClimaDias;
+import com.carlosveloper.weatherm.Model.Response.ResponseForecast;
+import com.carlosveloper.weatherm.Model.Response.ResponseWeather;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
@@ -12,9 +15,7 @@ import retrofit2.http.Query;
 
 public interface ApiService {
 
-   /* @GET("usuarios")
-    Call<ResponseLogin> doLogin(@Query("correo") String correo,
-                                @Query("contrasenia") String idTienda);
+   /*
 
 
     @POST("usuarios")
@@ -45,4 +46,22 @@ public interface ApiService {
     Call<ResponseFactura> misFacturas(@Path(value = "id", encoded = true) String idUsuario);
 
 */
+
+    @GET("weather")
+    Call<ResponseWeather> getClima(@Query("id") String idCiudad,
+                                  @Query("appid") String apiKey);
+
+
+
+    @GET("forecast/daily")
+    Call<ResponseForecast> getClimaForescast(@Query("id") String idCiudad,
+                                    @Query("appid") String apiKey);
+
+
+    @GET("onecall/timemachine")
+    Call<ResponseClimaDias> getClimaDay(@Query("lat") String latitud,
+                                        @Query("lon") String longitud,
+                                        @Query("dt") String diaTiempo,
+                                        @Query("appid") String apiKey);
+
 }

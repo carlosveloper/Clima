@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#CDDC39</color>
-    <color name="colorPrimaryDark">#00AFEF</color>
-    <color name="colorAccent">#00AFEF</color>
+    <color name="colorPrimary">#4C7FB8</color>
+    <color name="colorPrimaryDark">#CAD4D7</color>
+    <color name="colorAccent">#CAD4D7</color>
 
 
     <!-- Drawer menu color -->
@@ -45,15 +45,14 @@
 
     <string-array name="color_weather">
         <item >#CDDC39</item>  	<!-- Clear color -->
-        <item >#00AFEF</item> 	<!-- Few cloud color -->
-        <item >#03A9F4</item>	<!-- scattered cloud color -->
-        <item >#673AB7</item>	<!-- broken clouds color -->
-        <item >#2196F3</item>	<!-- shower rain color -->
-
-        <item >#03A9F4</item> 	<!-- rain color -->
-        <item >#F44336</item>	<!-- thunderstorm color -->
-        <item >#00BCD4</item>	<!-- snow color -->
-        <item >#607D8B</item>	<!-- mist color -->
+        <item >#4C7FB8</item> 	<!-- Few cloud color -->
+        <item >#93d3fe</item>	<!-- scattered cloud color -->
+        <item >#328dd8</item>	<!-- broken clouds color -->
+        <item >#47c4fd</item>	<!-- shower rain color -->
+        <item >#72ADCA</item> 	<!-- rain color -->
+        <item >#686974</item>	<!-- thunderstorm color -->
+        <item >#fffafa</item>	<!-- snow color -->
+        <item >#CAD4D7</item>	<!-- mist color -->
         <item >#3F51B5</item>	<!-- other color -->
 
     </string-array>

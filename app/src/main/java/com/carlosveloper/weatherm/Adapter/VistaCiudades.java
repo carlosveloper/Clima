@@ -1,11 +1,13 @@
 package com.carlosveloper.weatherm.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,14 +16,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.carlosveloper.weatherm.Common.Global;
 import com.carlosveloper.weatherm.Model.CityJson;
 
 import com.carlosveloper.weatherm.R;
+import com.carlosveloper.weatherm.Utils.Utils;
+import com.carlosveloper.weatherm.View.Fragments.Clima;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class VistaCiudades extends RecyclerView.Adapter<VistaCiudades.Holder>  implements Filterable {
+public class VistaCiudades extends RecyclerView.Adapter<VistaCiudades.Holder> implements Filterable {
 
     List<CityJson> lst_normal;
     List<CityJson> list_full;
@@ -29,14 +34,13 @@ public class VistaCiudades extends RecyclerView.Adapter<VistaCiudades.Holder>  i
     Context context;
     String id_del_fragment;
 
-  ;
+    ;
 
     public VistaCiudades(List<CityJson> lst_normal, FragmentManager fragmentManager) {
         this.lst_normal = lst_normal;
-        list_full=new ArrayList<>(lst_normal);
+        list_full = new ArrayList<>(lst_normal);
         this.fragmentManager = fragmentManager;
     }
-
 
 
     @NonNull
@@ -50,18 +54,20 @@ public class VistaCiudades extends RecyclerView.Adapter<VistaCiudades.Holder>  i
 
     @Override
     public void onBindViewHolder(@NonNull VistaCiudades.Holder holder, final int position) {
-        //ENTREGADA //WAITING //IN_PROGRESS
-
-       // holder.RellenoStatus.setBackgroundColor(R.drawable.border_estatus_purpura);
 
         holder.NombreCiudad.setText(lst_normal.get(position).getName());
-
         holder.Pais.setText(lst_normal.get(position).getCountry());
-
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.bg_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("click", "clima");
+                Clima climaCiudad = new Clima();
+                climaCiudad.ciudad = lst_normal.get(position);
+                Global.ciudadSeleccionada=lst_normal.get(position);
+                FragmentTransaction fragmentTransaction;
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.Contenedor_Fragments, climaCiudad).addToBackStack(null);
+                fragmentTransaction.commit();
 
             }
         });
@@ -79,26 +85,28 @@ public class VistaCiudades extends RecyclerView.Adapter<VistaCiudades.Holder>  i
     }
 
 
-
     public class Holder extends RecyclerView.ViewHolder {
 
-        TextView NombreCiudad,Pais;
+        TextView NombreCiudad, Pais;
+        LinearLayout bg_item;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
-            NombreCiudad=itemView.findViewById(R.id.TVNombreCiudad);
-            Pais=itemView.findViewById(R.id.TVPais);
+            NombreCiudad = itemView.findViewById(R.id.TVNombreCiudad);
+
+            Pais = itemView.findViewById(R.id.TVPais);
+            bg_item = itemView.findViewById(R.id.bg_item);
 
 
         }
     }
 
-    private Filter city_filter =new Filter() {
+    private Filter city_filter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
 
             //("adapter","filtro llegar" +constraint);
-            List<CityJson> filtro=new ArrayList<>();
+            List<CityJson> filtro = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
                 //("adapter","filtro sin cambios");
 
@@ -112,7 +120,7 @@ public class VistaCiudades extends RecyclerView.Adapter<VistaCiudades.Holder>  i
                     //("adapter","recorro" + item.getNombre());
 
 
-                    if (item.getName().toLowerCase().contains(filterPattern) ) {
+                    if (item.getName().toLowerCase().contains(filterPattern)) {
                         filtro.add(item);
                     }
                 }
@@ -131,9 +139,6 @@ public class VistaCiudades extends RecyclerView.Adapter<VistaCiudades.Holder>  i
             notifyDataSetChanged();
         }
     };
-
-
-
 
 
 }
