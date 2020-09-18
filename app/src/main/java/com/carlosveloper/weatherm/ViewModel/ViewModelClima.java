@@ -10,15 +10,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.carlosveloper.weatherm.Common.Constantes;
 import com.carlosveloper.weatherm.Common.MyApp;
-import com.carlosveloper.weatherm.Model.CityJson;
 import com.carlosveloper.weatherm.Model.Response.ResponseClimaDias;
 import com.carlosveloper.weatherm.Model.Response.ResponseForecast;
 import com.carlosveloper.weatherm.Model.Response.ResponseWeather;
 import com.carlosveloper.weatherm.Repository.ApiService;
 import com.carlosveloper.weatherm.Repository.RetrofitClient;
-
-import java.util.HashMap;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -83,7 +79,7 @@ public class ViewModelClima extends ViewModel {
 
     private void RetrofitInit(){
         ClimaClient = RetrofitClient.getInstance();
-        CLimaService = ClimaClient.getMiniTwitterService();
+        CLimaService = ClimaClient.getService();
     }
 
 

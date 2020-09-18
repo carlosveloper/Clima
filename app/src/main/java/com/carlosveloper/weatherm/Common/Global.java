@@ -6,14 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Global {
-
     public static List<CityJson> misCiudades = new ArrayList<>();
     public static CityJson ciudadSeleccionada = new CityJson();
-
-
     public static List<String> ImagenesClimaEventual = new ArrayList<>();
-
-
     public static void llenarImagenesCLima() {
         //clear sky
         ImagenesClimaEventual.add("https://torange.biz/photofxnew/1/HD/mirror-macro-blurring-top-bottom-sky-clear-1049.jpg");

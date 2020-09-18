@@ -56,31 +56,14 @@ public class Utils {
     }
 
 
-
-
     public static String getTemp(Double degrees) {
-       /* if (getIntPref(Constant.I_KEY_UNIT, 0, context) == 0) { // for celcius
-            return sSpiltter(d) + " \u00b0C";
-
-        } else { // for farhenheit
-            Double F = (d * (9 / 5)) + 32;
-            return sSpiltter(F) + " \u00b0F";
-        }*/
-
-       /* Double F = (d * (9 / 5)) + 32;
-        return sSpiltter(F) + " \u00b0F";*/
-
-
        double celcius= degrees- 273.15;
-
        float fah=celsiusAFahrenheit((float)celcius);
         double result=0;
         result=fah-32;
         result*=5;
         result/=9;
         return sSpiltter(result)+ " \u00b0C";
-
-
     }
 
     public static float celsiusAFahrenheit(float celsius) {
@@ -125,47 +108,6 @@ public class Utils {
                 return "SABADO";
         }
         return null;
-    }
-
-
-
-    public static int setLytColor(String icon, LinearLayout lyt,Context context) {
-        int colorInt;
-
-        String color[] = context.getResources().getStringArray(R.array.color_weather);
-        if (icon.equals("01d") || icon.equals("01n")) { // clear sky
-            colorInt = Color.parseColor(color[0]);
-
-        } else if (icon.equals("02d") || icon.equals("02n")) { // few clouds
-            colorInt = Color.parseColor(color[1]);
-
-        } else if (icon.equals("03d") || icon.equals("03n")) { // scatteredclouds
-            colorInt = Color.parseColor(color[2]);
-
-        } else if (icon.equals("04d") || icon.equals("04n")) { // broken clouds
-            colorInt = Color.parseColor(color[3]);
-
-        } else if (icon.equals("09d") || icon.equals("09n")) { // shower rain
-            colorInt = Color.parseColor(color[4]);
-
-        } else if (icon.equals("10d") || icon.equals("10n")) { // rain
-            colorInt = Color.parseColor(color[5]);
-
-        } else if (icon.equals("11d") || icon.equals("11n")) { // thunderstorm
-            colorInt = Color.parseColor(color[6]);
-
-        } else if (icon.equals("13d") || icon.equals("13n")) { // snow
-            colorInt = Color.parseColor(color[7]);
-
-        } else if (icon.equals("50d") || icon.equals("50n")) { // mist
-            colorInt = Color.parseColor(color[8]);
-
-        } else {
-            colorInt = Color.parseColor(color[9]);
-        }
-
-        lyt.setBackgroundColor(colorInt);
-        return colorInt;
     }
 
 

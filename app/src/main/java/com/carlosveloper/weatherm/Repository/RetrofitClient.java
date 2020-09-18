@@ -42,7 +42,7 @@ public class RetrofitClient {
         return instance;
     }
 
-    public ApiService getMiniTwitterService() {
+    public ApiService getService() {
         return miniService;
     }
 
