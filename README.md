@@ -13,12 +13,13 @@ Common-->Global-----> funcion llenarImagenesCLima
 y podra modificar los fondos con lo que considere acorde al clima 
 
 
-en la carpeta drawable se encuentra varias imagenes para el clima en este caso se usa solo algunas
+En la carpeta drawable se encuentra varias imagenes para el clima en este caso se usa solo algunas
 ya que por el momento se toma las imagenes que la misma api nos proporciona
 
 Tambien se encuentra un par de estilos xml que se usan el buscador y en el recycler de los climas 
 
 Si desea tener todas las ciudades (20000+) en la carpeta assets existe el archivo citylist.json que podra configurar
+
 Utils------>Utils-----> funcion loadJSONFromAsset
 
 reemplazar city.json ------> citylist.json 
