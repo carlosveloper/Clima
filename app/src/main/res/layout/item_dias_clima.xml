@@ -5,7 +5,7 @@
     android:id="@+id/fondoDia"
     android:layout_width="100dp"
     android:layout_marginRight="10dp"
-    android:background="@drawable/bg_city"
+    android:background="@color/col_grisfondo"
     android:layout_height="130dp">
 
     <LinearLayout

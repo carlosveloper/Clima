@@ -14,6 +14,8 @@ import androidx.annotation.ColorInt;
 import com.carlosveloper.weatherm.Common.Global;
 import com.carlosveloper.weatherm.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,7 +24,6 @@ public class Utils {
 
     public static String getLastUpdate(Long l) {
         Date curDate = new Date(l * 1000);
-        //Wed, 4 Jul 2001 12:08:56 -0700
         SimpleDateFormat format = new SimpleDateFormat("EEE d MMM yyyy HH:mm");
         String dateToStr = format.format(curDate);
         return   dateToStr.toUpperCase();
@@ -35,26 +36,6 @@ public class Utils {
         String dateToStr = format.format(curDate);
         return dateToStr.toUpperCase();
     }
-
-    private static boolean isLollipopOrHigher() {
-        return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
-    }
-
-    public static void systemBarLollipop(Activity act, @ColorInt int colorInt) {
-        if (isLollipopOrHigher()) {
-            Window window = act.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(colorDarker(colorInt));
-        }
-    }
-    private static int colorDarker(int color) {
-        float[] hsv = new float[3];
-        Color.colorToHSV(color, hsv);
-        hsv[2] *= 0.8f; // value component
-        return Color.HSVToColor(hsv);
-    }
-
 
     public static String getTemp(Double degrees) {
        double celcius= degrees- 273.15;
@@ -145,6 +126,29 @@ public class Utils {
         return Url;
     }
 
+
+    public static String loadJSONFromAsset(Context context) {
+        String json = null;
+        try {
+            InputStream is = context.getAssets().open("city.json");
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+
+    }
 
 
 }

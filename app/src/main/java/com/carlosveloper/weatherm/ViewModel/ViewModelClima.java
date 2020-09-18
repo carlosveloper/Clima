@@ -31,11 +31,8 @@ public class ViewModelClima extends ViewModel {
     private MutableLiveData<ResponseForecast> consultaClimaForescast;
     private MutableLiveData<ResponseClimaDias> consultaClimaDias;
 
-    private MutableLiveData<Boolean> intentHome;
-
     public ViewModelClima() {
         this.isViewLoading = new MutableLiveData<>();
-        this.intentHome = new MutableLiveData<>();
         this.consultaClima = new MutableLiveData<>();
         this.consultaClimaForescast = new MutableLiveData<>();
         this.consultaClimaDias = new MutableLiveData<>();
@@ -47,9 +44,7 @@ public class ViewModelClima extends ViewModel {
     public LiveData<Boolean> getIsViewLoading(){
         return  isViewLoading;
     }
-    public LiveData<Boolean> getintentHome(){
-        return  intentHome;
-    }
+
     public LiveData<ResponseWeather> getConsultaClima(){
         return  consultaClima;
     }
@@ -64,17 +59,6 @@ public class ViewModelClima extends ViewModel {
     public LiveData<ResponseForecast> getConsultaClimaForescast(){
         return  consultaClimaForescast;
     }
-
-    public  void  onClickLogin(String email,String pass){
-       /* isViewLoading.setValue(true);
-        if(validaEmail(email) &&     validaPassword(pass)  ){
-            isViewLoading.setValue(false);
-        }else {
-            peticionLogin(email,pass);
-        }*/
-     //  resultado.setValue(Validation.validarEmail(data));
-    }
-
 
 
     private void RetrofitInit(){
@@ -94,7 +78,7 @@ public class ViewModelClima extends ViewModel {
                     consultaClima.setValue(response.body());
                 } else {
                     isViewLoading.setValue(false);
-                    Toast.makeText(MyApp.getContext(), "Algo fue mal, revise sus datos de acceso", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyApp.getContext(), "Algo fue mal, revise sus datos ", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -128,7 +112,7 @@ public class ViewModelClima extends ViewModel {
                 if(response.isSuccessful()) {
                     consultaClimaForescast.setValue(response.body());
                 } else {
-                    Toast.makeText(MyApp.getContext(), "Algo fue mal, revise sus datos de acceso", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyApp.getContext(), "Algo fue mal, revise sus datos", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -148,7 +132,7 @@ public class ViewModelClima extends ViewModel {
                     response.body().setNumeroDia(numeroDia);
                     consultaClimaDias.setValue(response.body());
                 } else {
-                    Toast.makeText(MyApp.getContext(), "Algo fue mal, revise sus datos de acceso", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyApp.getContext(), "Algo fue mal, revise sus datos ", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override

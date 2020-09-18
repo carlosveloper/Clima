@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +17,18 @@ import android.widget.EditText;
 
 import com.carlosveloper.weatherm.Adapter.VistaCiudades;
 import com.carlosveloper.weatherm.Common.Global;
+import com.carlosveloper.weatherm.Model.CityJson;
 import com.carlosveloper.weatherm.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ciudades extends Fragment {
 
 
 
     RecyclerView recyclerView;
+    List<CityJson> lst_ciudades=new ArrayList<>();
     VistaCiudades adapter;
 
     View vista;
@@ -34,6 +38,13 @@ public class Ciudades extends Fragment {
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e("resume",""+Global.misCiudades.size());
+       // lst_ciudades.addAll(Global.misCiudades);
+        adapter.updateList(Global.misCiudades);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,14 +81,13 @@ public class Ciudades extends Fragment {
     }
 
     private void  iniciar_recycler(){
-        adapter=new VistaCiudades(Global.misCiudades,getFragmentManager());
+        adapter=new VistaCiudades(lst_ciudades,getFragmentManager());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
     public void filtro(String S){
-
         if(adapter!=null)
             adapter.getFilter().filter(S);
     }

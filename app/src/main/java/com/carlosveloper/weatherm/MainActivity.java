@@ -1,61 +1,67 @@
 package com.carlosveloper.weatherm;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
-import com.carlosveloper.weatherm.Common.Global;
-import com.carlosveloper.weatherm.Model.CityJson;
 import com.carlosveloper.weatherm.View.Fragments.Ciudades;
-import com.carlosveloper.weatherm.View.Fragments.Clima;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
+import com.carlosveloper.weatherm.ViewModel.ViewModelMain;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
+    private ViewModelMain viewModel;
+    private LinearLayout ContainerCity;
+    private View layoutLoading;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Gson gson = new Gson();
-        List<CityJson> listCiudades = gson.fromJson(loadJSONFromAsset(this), new TypeToken<List<CityJson>>(){}.getType());
-        Global.misCiudades=listCiudades;
-        Global.llenarImagenesCLima();
-        Log.e("nombre",listCiudades.get(0).getName());
+        UI();
+        Observer();
+        viewModel.llenarCiudad();
+
+    }
+
+    private void UI() {
+        layoutLoading = findViewById(R.id.layoutLoading);
+        ContainerCity = findViewById(R.id.ContainerCity);
+        viewModel = ViewModelProviders.of(this).get(ViewModelMain.class);
+
+    }
+
+    private void Observer() {
+        final Observer<Boolean> observerLoading = new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean result) {
+
+                if (result) {
+                    layoutLoading.setVisibility(View.VISIBLE);
+                    ContainerCity.setVisibility(View.GONE);
+                } else {
+                    layoutLoading.setVisibility(View.GONE);
+                    ContainerCity.setVisibility(View.VISIBLE);
+                    IniciarFragment();
+                }
+
+            }
+        };
+        viewModel.getIsViewLoading().observe(this, observerLoading);
+
+    }
+
+    private void IniciarFragment() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.Contenedor_Fragments, new Ciudades()).commit();
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-    }
-
-
-    public String loadJSONFromAsset(Context context) {
-        String json = null;
-        try {
-            InputStream is = context.getAssets().open("city.json");
-
-            int size = is.available();
-
-            byte[] buffer = new byte[size];
-
-            is.read(buffer);
-
-            is.close();
-
-            json = new String(buffer, "UTF-8");
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
 
     }
 

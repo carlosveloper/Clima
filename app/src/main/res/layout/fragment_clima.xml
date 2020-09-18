@@ -36,7 +36,6 @@
                     android:layout_weight="1"
                     android:layout_marginTop="5dp"
                     android:id="@+id/lyt_main"
-                    android:background="@drawable/scattered"
                     android:gravity="center"
 
                     android:layout_width="match_parent"
@@ -181,12 +180,19 @@
                      <View
                          android:id="@+id/view1"
                          android:layout_width="match_parent"
-                         android:layout_height="2px"
-                         android:layout_marginLeft="10dp"
+                         android:layout_height="2dp"
                          android:layout_marginTop="5dp"
-                         android:layout_marginRight="10dp"
                          android:layout_marginBottom="1dp"
                          android:background="@color/colorPrimary" />
+
+                         <LinearLayout
+                             android:paddingVertical="10dp"
+                             android:paddingHorizontal="8dp"
+                             android:background="@drawable/box_shadow"
+                             android:orientation="vertical"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content">
+
 
 
                      <androidx.recyclerview.widget.RecyclerView
@@ -201,12 +207,11 @@
                          tools:listitem="@layout/item_dias_clima">
 
                      </androidx.recyclerview.widget.RecyclerView>
+                         </LinearLayout>
 
                      <View
                          android:layout_width="match_parent"
-                         android:layout_height="2px"
-                         android:layout_marginLeft="10dp"
-                         android:layout_marginRight="10dp"
+                         android:layout_height="2dp"
                          android:layout_marginBottom="5dp"
                          android:background="@color/colorPrimary" />
 
@@ -217,7 +222,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <include layout="@layout/layout_loading"
+    <include layout="@layout/layout_loading_clima"
         android:id="@+id/layoutLoading"
         android:visibility="gone"
         tools:visibility="visible"/>

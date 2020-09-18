@@ -5,18 +5,7 @@
     <color name="colorAccent">#CAD4D7</color>
 
 
-    <!-- Drawer menu color -->
-    <color name="list_item_title">#fff</color>
-    <color name="list_background">#ffffff</color>
-    <color name="list_background_pressed">#EBEBEB</color>
-    <color name="list_divider">#272727</color>
-    <color name="counter_text_bg">#626262</color>
-    <color name="counter_text_color">#c5c4c4</color>
 
-    <color name="bg_slidemenu">#4B4B4D</color>
-
-    <color name="grey"		>#808080</color>
-    <color name="button_press">#EBEBEB</color>
 
     <!-- optional prymary color -->
     <color name="main_blue"		>#00AFEF</color>
@@ -36,9 +25,7 @@
     <color name="grey_soft">#F5F5F5</color>
     <color name="grey_dark">#332C2B</color>
     <color name="grey_bg">#E6E6E6</color>
-
     <color name="grey_medium">#BDBFC1</color>
-
     <color name="col_grissuave">#7e7e7c</color>
     <color name="col_grisfondo">#f4f4f4</color>
 
@@ -54,6 +41,7 @@
         <item >#fffafa</item>	<!-- snow color -->
         <item >#CAD4D7</item>	<!-- mist color -->
         <item >#3F51B5</item>	<!-- other color -->
-
     </string-array>
+
+
 </resources>

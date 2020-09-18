@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.carlosveloper.weatherm.Common.Global;
 import com.carlosveloper.weatherm.Model.CityJson;
 
+import com.carlosveloper.weatherm.Model.Response.ResponseClimaDias;
 import com.carlosveloper.weatherm.R;
 import com.carlosveloper.weatherm.Utils.Utils;
 import com.carlosveloper.weatherm.View.Fragments.Clima;
@@ -28,8 +29,8 @@ import java.util.List;
 
 public class VistaCiudades extends RecyclerView.Adapter<VistaCiudades.Holder> implements Filterable {
 
-    List<CityJson> lst_normal;
-    List<CityJson> list_full;
+     List<CityJson> lst_normal;
+     List<CityJson> list_full;
     FragmentManager fragmentManager;
     Context context;
     String id_del_fragment;
@@ -60,10 +61,9 @@ public class VistaCiudades extends RecyclerView.Adapter<VistaCiudades.Holder> im
         holder.bg_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("click", "clima");
                 Clima climaCiudad = new Clima();
                 climaCiudad.ciudad = lst_normal.get(position);
-                Global.ciudadSeleccionada=lst_normal.get(position);
+                Global.misCiudades=list_full;
                 FragmentTransaction fragmentTransaction;
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.Contenedor_Fragments, climaCiudad).addToBackStack(null);
@@ -102,8 +102,15 @@ public class VistaCiudades extends RecyclerView.Adapter<VistaCiudades.Holder> im
     }
 
     private Filter city_filter = new Filter() {
+
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
+            Log.e("lista full",""+list_full.size());
+            Log.e("lista normal",""+lst_normal.size());
+
+            if(list_full.size()<=0){
+                list_full.addAll(Global.misCiudades);
+            }
 
             //("adapter","filtro llegar" +constraint);
             List<CityJson> filtro = new ArrayList<>();
@@ -139,6 +146,19 @@ public class VistaCiudades extends RecyclerView.Adapter<VistaCiudades.Holder> im
             notifyDataSetChanged();
         }
     };
+
+
+
+
+    public void updateList(List<CityJson> newList) {
+        lst_normal.clear();
+        list_full.clear();
+        this.lst_normal = newList;
+        list_full = new ArrayList<>(lst_normal);
+        Log.e("pase",""+newList.size());
+        this.notifyDataSetChanged();
+    }
+
 
 
 }

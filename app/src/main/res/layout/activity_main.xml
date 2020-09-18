@@ -6,11 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/Contenedor_Fragments"
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/ContainerCity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-    </FrameLayout>
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/Contenedor_Fragments"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        </FrameLayout>
+    </LinearLayout>
+
+
+    <include layout="@layout/layout_loading_city"
+        android:id="@+id/layoutLoading"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

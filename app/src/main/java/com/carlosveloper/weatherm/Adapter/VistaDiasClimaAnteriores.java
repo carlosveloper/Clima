@@ -58,8 +58,6 @@ public class VistaDiasClimaAnteriores extends RecyclerView.Adapter<VistaDiasClim
 
         holder.dia.setText(Utils.getDay(Long.valueOf(lst_normal.get(position).getCurrent().getDt()))+"\n"+Utils.DiaFecha(Long.valueOf(lst_normal.get(position).getCurrent().getDt())));
 
-      //  int colorInt = Utils.setLytColor(lst_normal.get(position).getCurrent().getWeather().get(0).getIcon(), holder.fondoDia,holder.fondoDia.getContext());
-
         Glide.with(holder.fondoDia.getContext()).load(Utils.getFondoClima(lst_normal.get(position).getCurrent().getWeather().get(0).getIcon()).trim())
                 .into(new SimpleTarget<Drawable>() {
                     @Override

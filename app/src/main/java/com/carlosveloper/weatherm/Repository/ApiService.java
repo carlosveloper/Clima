@@ -15,38 +15,6 @@ import retrofit2.http.Query;
 
 public interface ApiService {
 
-   /*
-
-
-    @POST("usuarios")
-    Call<DatosLogin> crearUsuario(@Body JsonObject object);
-
-    @POST("facturas")
-    Call<DatosFactura> crearFactura(@Body JsonObject object);
-
-
-
-
-    //Todo planes de usuario
-    @GET("usuarios/{id}?embed=planes?embed=plan")
-    Call<ResponsePlanesUsuario> misPlanes(@Path(value = "id", encoded = true) String idUsuario);
-
-    @GET("planes")
-    Call<ResponsePlanes> getPlanes();
-
-    @POST("planesusuario")
-    Call<DatosPlanUsuario> agregarPlan(@Body JsonObject object);
-
-
-
-    ///Todo facturas de usuario
-
-    //Todo planes de usuario
-    @GET("usuarios/{id}?embed=facturas")
-    Call<ResponseFactura> misFacturas(@Path(value = "id", encoded = true) String idUsuario);
-
-*/
-
     @GET("weather")
     Call<ResponseWeather> getClima(@Query("id") String idCiudad,
                                   @Query("appid") String apiKey);

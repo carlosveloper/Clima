@@ -1,15 +1,9 @@
 package com.carlosveloper.weatherm.View.Fragments;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -25,14 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.carlosveloper.weatherm.Adapter.VistaDiasClimaAnteriores;
 import com.carlosveloper.weatherm.Adapter.VistaDiasClimaPosteriores;
@@ -67,18 +55,15 @@ public class Clima extends Fragment {
     private TextView tv_addres, tv_date, tv_temp,
             tv_pressure, tv_humidity, tv_wind,
             tv_description;
-    private ImageView img_small_[] = new ImageView[5];
     MaterialSpinner spinner;
     private ImageView img_weather;
-
     private LinearLayout lyt_main;
     private LinearLayout ContainerClima;
     private View layoutLoading;
 
-
     RecyclerView recyclerView;
-    VistaDiasClimaAnteriores adapter;
-    VistaDiasClimaPosteriores adapter2;
+    VistaDiasClimaAnteriores adapterClimaAnterior;
+    VistaDiasClimaPosteriores adapterClimaPosterior;
 
     ///
 
@@ -93,6 +78,7 @@ public class Clima extends Fragment {
         super.onResume();
         viewModel.peticionClima("" + ciudad.getId());
         viewModel.peticionClimaForescast("" + ciudad.getId());
+        get5diasAnteriores();
 
     }
 
@@ -102,22 +88,20 @@ public class Clima extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_clima, container, false);
+        Log.e("ci",""+ Global.misCiudades.size());
         UI();
         iniciar_recyclerAnterior();
         iniciar_recyclerPosterior();
-
-        if (ciudad == null) {
-            ciudad = Global.ciudadSeleccionada;
-        }
-
         Observer();
+        return vista;
+    }
+
+    private void get5diasAnteriores(){
         ObtenerCLimaDias(-5);
         ObtenerCLimaDias(-4);
         ObtenerCLimaDias(-3);
         ObtenerCLimaDias(-2);
         ObtenerCLimaDias(-1);
-
-        return vista;
     }
 
     private void UI() {
@@ -172,7 +156,7 @@ public class Clima extends Fragment {
         final Observer<ResponseForecast> observerClimaForescast = new Observer<ResponseForecast>() {
             @Override
             public void onChanged(ResponseForecast result) {
-                adapter2.updateList(result.getList());
+                adapterClimaPosterior.updateList(result.getList());
             }
         };
 
@@ -182,7 +166,7 @@ public class Clima extends Fragment {
 
                 listadiasAnteriores.add(result);
                 Collections.sort(listadiasAnteriores, new ResponseClimaDias());
-                adapter.notifyDataSetChanged();
+                adapterClimaAnterior.notifyDataSetChanged();
             }
         };
         final Observer<Boolean> observerLoading = new Observer<Boolean>() {
@@ -210,8 +194,6 @@ public class Clima extends Fragment {
 
 
     private void llenarDatos(ResponseWeather result) {
-
-
         tv_addres.setText(result.getName() + ", " + result.getSys().getCountry());
         tv_date.setText(Utils.getLastUpdate(Long.valueOf(result.getDt())));
         tv_temp.setText(Utils.getTemp(result.getMain().getTemp()));
@@ -244,19 +226,19 @@ public class Clima extends Fragment {
 
     private void iniciar_recyclerAnterior() {
 
-        adapter = new VistaDiasClimaAnteriores(listadiasAnteriores, getFragmentManager(), getActivity());
+        adapterClimaAnterior = new VistaDiasClimaAnteriores(listadiasAnteriores, getFragmentManager(), getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapterClimaAnterior);
     }
 
     private void iniciar_recyclerPosterior() {
-        adapter2 = new VistaDiasClimaPosteriores(listdiasPosterior, getFragmentManager(), getActivity());
+        adapterClimaPosterior = new VistaDiasClimaPosteriores(listdiasPosterior, getFragmentManager(), getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter2);
+        recyclerView.setAdapter(adapterClimaPosterior);
     }
 
 
